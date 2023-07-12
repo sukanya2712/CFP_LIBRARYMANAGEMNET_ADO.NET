@@ -12,6 +12,7 @@
                                   "\n2.Get Total Books :" +
                                   "\n3.Get Book list" + 
                                   "\n4.Total no of availble books:"+
+                                  "\n5.Get no of Borrowed books"+
                                    "\n12.Exit : "
                    );
 
@@ -65,6 +66,12 @@
                     case 4:
                         {
                             int result = Operations.get_total_no_availble_books();
+                            Console.WriteLine($"Total no of availble books are: {result}");
+                            break;
+                        }
+                    case 5:
+                        {
+                            int result = Operations.NoofBorrowedBooks();
                             Console.WriteLine($"Total no of availble books are: {result}");
                             break;
                         }

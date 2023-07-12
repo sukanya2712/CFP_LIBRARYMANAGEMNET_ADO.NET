@@ -156,5 +156,33 @@ namespace LibraryManagementAdo
 
             return 0;
         }
+
+
+        public int NoofBorrowedBooks()
+        {
+            try
+            {
+                sqlConnection.Open();
+                string query = "NOOFBORROWEDBOOKS";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                int result = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+                sqlConnection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return 0;
+        }
     }
 }
