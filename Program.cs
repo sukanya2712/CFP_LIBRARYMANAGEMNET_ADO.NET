@@ -10,6 +10,8 @@
             {
                 Console.WriteLine("\n1.Add Books To Library : " +
                                   "\n2.Get Total Books :" +
+                                  "\n3.Get Book list" + 
+                                  "\n4.Total no of availble books:"+
                                    "\n12.Exit : "
                    );
 
@@ -58,6 +60,12 @@
                     case 3:
                         {
                             Operations.GetBookList();
+                            break;
+                        }
+                    case 4:
+                        {
+                            int result = Operations.get_total_no_availble_books();
+                            Console.WriteLine($"Total no of availble books are: {result}");
                             break;
                         }
                     case 12:

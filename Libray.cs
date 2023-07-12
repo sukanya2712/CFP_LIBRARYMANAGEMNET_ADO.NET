@@ -129,5 +129,32 @@ namespace LibraryManagementAdo
 
         }
 
+
+        public int get_total_no_availble_books()
+        {
+            try
+            {
+                sqlConnection.Open();
+                string query = "NOOFAVABOOKS";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                int result = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+                sqlConnection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return 0;
+        }
     }
 }
