@@ -15,9 +15,10 @@
                                   "\n5.Get no of Borrowed books"+
                                   "\n6.Get Books by Author"+ 
                                   "\n7.Get Books by Genre"+
-                                  "\n8.Borrowed Books from Library"+
+                                  "\n8.Borrow Books from Library"+
                                   "\n9.Return Book to Library"+
-                                   "\n12.Exit : "
+                                  "\n10.Get Books Details" +
+                                   "\n11.Exit : "
                    );
 
 
@@ -139,7 +140,22 @@
                             }
                             break;
                         }
-                    case 12:
+                    case 10:
+                        {
+                            Console.WriteLine("Enter the name of the book you want to get details : ");
+                            string BookName = Console.ReadLine();
+                            bool result = Operations.GetBookDetails(BookName);
+                            if (result)
+                            {
+                                Console.WriteLine("Books details has been printed");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Book details cant be found or it doesnt exist");
+                            }
+                            break;
+                        }
+                    case 11:
                         {
                             Environment.Exit(0);
                             break;

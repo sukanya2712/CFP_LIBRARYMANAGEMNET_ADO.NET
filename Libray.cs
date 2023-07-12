@@ -323,5 +323,58 @@ namespace LibraryManagementAdo
                 sqlConnection.Close();
             }
         }
+
+        public bool GetBookDetails(string bookTitle)
+        {
+            try
+            {
+                sqlConnection.Open();
+                string query = "GetBookDetails";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@BookTitle", bookTitle);
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string title = reader["Title"].ToString();
+                        string author = reader["Author"].ToString();
+                        string Genre = reader["Genre"].ToString();
+                        String Borrowed = reader["Borrowed"].ToString();
+
+                        Console.WriteLine("Title: " + title);
+                        Console.WriteLine("Author: " + author);
+                        Console.WriteLine("Genre: " + Genre);
+                        if (Borrowed == "0")
+                        {
+                            Console.WriteLine("Borrowed:No");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Borrowed:YES");
+                        }
+                    }
+
+                    return true; // Book details found and displayed successfully
+                }
+                else
+                {
+                    Console.WriteLine("Book not found.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
     }
 }
