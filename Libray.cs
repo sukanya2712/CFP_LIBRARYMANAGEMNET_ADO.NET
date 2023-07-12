@@ -77,5 +77,57 @@ namespace LibraryManagementAdo
             return 0;
         }
 
+
+        public bool GetBookList()
+        {
+            try
+            {
+                List<Book> list = new List<Book>();
+                sqlConnection.Open();
+                string Query = "getbooklist";
+                SqlCommand sqlCommand = new SqlCommand(Query, sqlConnection);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Book book = new Book()
+                    {
+                        id = (int)reader["id"],
+                        Title = (string)reader["title"],
+                        Author = (string)reader["author"],
+                        Genre = (string)reader["genre"],
+                        Borrowed = (int)reader["borrowed"],
+                    };
+                    list.Add(book);
+                }
+                foreach (Book book in list)
+                {
+                    Console.WriteLine($"Book_id: {book.id}\t Title:- {book.Title}\t Author:- {book.Author}" +
+                        $"\t Genre:- {book.Genre}");
+                    if (book.Borrowed > 0)
+                    {
+                        Console.Write("Borrowed : yes");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Borrowed : NO");
+                    }
+
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine("Something went wrong");
+                return false;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+        }
+
     }
 }

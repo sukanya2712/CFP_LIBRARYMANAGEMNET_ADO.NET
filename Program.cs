@@ -55,6 +55,11 @@
                             Console.WriteLine($"Total no of books are: {result}");
                             break;
                         }
+                    case 3:
+                        {
+                            Operations.GetBookList();
+                            break;
+                        }
                     case 12:
                         {
                             Environment.Exit(0);
