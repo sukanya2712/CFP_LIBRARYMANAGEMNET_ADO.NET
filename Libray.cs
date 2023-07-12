@@ -15,5 +15,39 @@ namespace LibraryManagementAdo
         {
             sqlConnection = new SqlConnection(connection);
         }
+
+        public bool AddBooktoLibrary(Book book)
+        {
+            try
+            {
+                sqlConnection.Open();
+                string query = "AddBooks";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                //sqlCommand.Parameters.AddWithValue("@id", book.id);
+                sqlCommand.Parameters.AddWithValue("@title", book.Title);
+                sqlCommand.Parameters.AddWithValue("@author", book.Author);
+                sqlCommand.Parameters.AddWithValue("@genre", book.Genre);
+                sqlCommand.Parameters.AddWithValue("@borrowed", 0);
+                int result = sqlCommand.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    Console.WriteLine($"{result} number of rows affected in Contact Table");
+                    sqlConnection.Close();
+                    return true;
+                }
+                else
+                {
+                    sqlConnection.Close();
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
     }
 }
