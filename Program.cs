@@ -13,6 +13,7 @@
                                   "\n3.Get Book list" + 
                                   "\n4.Total no of availble books:"+
                                   "\n5.Get no of Borrowed books"+
+                                  "\n6.Get Books by Author"+
                                    "\n12.Exit : "
                    );
 
@@ -72,7 +73,22 @@
                     case 5:
                         {
                             int result = Operations.NoofBorrowedBooks();
-                            Console.WriteLine($"Total no of availble books are: {result}");
+                            Console.WriteLine($"Total no of Borrowed books are: {result}");
+                            break;
+                        }
+                    case 6:
+                        {
+                            Console.WriteLine("Enter the author name : ");
+                            string AuthorName = Console.ReadLine();
+                            bool result = Operations.GetBooksbyAuthor(AuthorName);
+                            if (result)
+                            {
+                                Console.WriteLine("list has been displayed");
+                            }
+                            else
+                            {
+                                Console.WriteLine("something went wrong");
+                            }
                             break;
                         }
                     case 12:
