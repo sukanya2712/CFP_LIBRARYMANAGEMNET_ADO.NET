@@ -13,7 +13,8 @@
                                   "\n3.Get Book list" + 
                                   "\n4.Total no of availble books:"+
                                   "\n5.Get no of Borrowed books"+
-                                  "\n6.Get Books by Author"+
+                                  "\n6.Get Books by Author"+ 
+                                  "\n7.Get Books by Genre"+
                                    "\n12.Exit : "
                    );
 
@@ -81,6 +82,21 @@
                             Console.WriteLine("Enter the author name : ");
                             string AuthorName = Console.ReadLine();
                             bool result = Operations.GetBooksbyAuthor(AuthorName);
+                            if (result)
+                            {
+                                Console.WriteLine("list has been displayed");
+                            }
+                            else
+                            {
+                                Console.WriteLine("something went wrong");
+                            }
+                            break;
+                        }
+                    case 7:
+                        {
+                            Console.WriteLine("Enter the genre name : ");
+                            string GenreName = Console.ReadLine();
+                            bool result = Operations.GetBooksbyGenre(GenreName);
                             if (result)
                             {
                                 Console.WriteLine("list has been displayed");

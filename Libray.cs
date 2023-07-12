@@ -227,6 +227,47 @@ namespace LibraryManagementAdo
 
         }
 
+        public bool GetBooksbyGenre(string input)
+        {
+            try
+            {
+                List<Book> list = new List<Book>();
+                sqlConnection.Open();
+                string Query = "GetBooksByGenre";
+                SqlCommand sqlCommand = new SqlCommand(Query, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@GenreName", input);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Book book = new Book()
+                    {
+                        id = (int)reader["id"],
+                        Title = (string)reader["title"],
+                        Author = (string)reader["author"],
+                        //Genre = (string)reader["genre"],
+                        Borrowed = (int)reader["borrowed"],
+                    };
+                    list.Add(book);
+                }
+                foreach (Book book in list)
+                {
+                    Console.WriteLine($"Book_id: {book.id}\t Title:- {book.Title}\t Author:- {book.Author}");
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+        }
+
 
     }
 }
