@@ -49,5 +49,33 @@ namespace LibraryManagementAdo
                 return false;
             }
         }
+
+        public int GetTotalNoofBooks()
+        {
+            try
+            {
+                sqlConnection.Open();
+                string query = "getbooks";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                int result = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+                sqlConnection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return 0;
+        }
+
     }
 }

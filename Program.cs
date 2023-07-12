@@ -9,6 +9,7 @@
             while (true)
             {
                 Console.WriteLine("\n1.Add Books To Library : " +
+                                  "\n2.Get Total Books :" +
                                    "\n12.Exit : "
                    );
 
@@ -46,6 +47,12 @@
                             {
                                 Console.WriteLine("NOT ADDED");
                             }
+                            break;
+                        }
+                    case 2:
+                        {
+                            int result = Operations.GetTotalNoofBooks();
+                            Console.WriteLine($"Total no of books are: {result}");
                             break;
                         }
                     case 12:
