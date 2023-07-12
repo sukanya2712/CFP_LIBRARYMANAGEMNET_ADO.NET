@@ -16,6 +16,7 @@
                                   "\n6.Get Books by Author"+ 
                                   "\n7.Get Books by Genre"+
                                   "\n8.Borrowed Books from Library"+
+                                  "\n9.Return Book to Library"+
                                    "\n12.Exit : "
                    );
 
@@ -120,6 +121,21 @@
                             else
                             {
                                 Console.WriteLine("Book not found or already borrowed.");
+                            }
+                            break;
+                        }
+                    case 9:
+                        {
+                            Console.WriteLine("Enter the name of the book you want to return : ");
+                            string BookName = Console.ReadLine();
+                            int result = Operations.ReturnBookToLibrary(BookName);
+                            if (result > 0)
+                            {
+                                Console.WriteLine("Book has been returned");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Book is already non-borrowed or returned");
                             }
                             break;
                         }

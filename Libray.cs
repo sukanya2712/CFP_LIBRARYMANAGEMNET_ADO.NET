@@ -282,7 +282,6 @@ namespace LibraryManagementAdo
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    Console.WriteLine("Book borrowed successfully.");
                     return true;
                 }
                 else
@@ -294,6 +293,30 @@ namespace LibraryManagementAdo
             {
                 Console.WriteLine(ex);
                 return false;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
+        public int ReturnBookToLibrary(string bookTitle)
+        {
+            try
+            {
+                sqlConnection.Open();
+                string query = "ReturnBoooks";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@BookTitle", bookTitle);
+
+                int rowsAffected = (int)command.ExecuteScalar();
+                return rowsAffected;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return -1; // Return -1 to indicate an error occurred
             }
             finally
             {
