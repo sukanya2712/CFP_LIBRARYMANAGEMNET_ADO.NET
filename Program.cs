@@ -15,6 +15,7 @@
                                   "\n5.Get no of Borrowed books"+
                                   "\n6.Get Books by Author"+ 
                                   "\n7.Get Books by Genre"+
+                                  "\n8.Borrowed Books from Library"+
                                    "\n12.Exit : "
                    );
 
@@ -104,6 +105,21 @@
                             else
                             {
                                 Console.WriteLine("something went wrong");
+                            }
+                            break;
+                        }
+                    case 8:
+                        {
+                            Console.WriteLine("Enter the name of the book you want to borrow : ");
+                            string BookName = Console.ReadLine();
+                            bool result = Operations.BorrowebookfromLibrary(BookName);
+                            if (result)
+                            {
+                                Console.WriteLine("Book has been borrowed");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Book not found or already borrowed.");
                             }
                             break;
                         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -268,6 +269,36 @@ namespace LibraryManagementAdo
 
         }
 
+        public bool BorrowebookfromLibrary(string bookTitle)
+        {
+            try
+            {
+                sqlConnection.Open();
+                string Query = "BorrowBook";
+                SqlCommand command = new SqlCommand(Query, sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@BookTitle", bookTitle);
 
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Book borrowed successfully.");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }
